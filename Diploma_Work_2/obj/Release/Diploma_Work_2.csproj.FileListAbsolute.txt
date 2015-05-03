@@ -9,3 +9,14 @@ D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.Properties.Resou
 D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.csproj.GenerateResource.Cache
 D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.exe
 D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.pdb
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\bin\Release\Diploma_Work_2.exe.config
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.exe
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.pdb
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\bin\Release\Diploma_Work_2.exe
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\bin\Release\Diploma_Work_2.pdb
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.csprojResolveAssemblyReference.cache
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.MainForm.resources
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.AddPointForm.resources
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.AddPathForm.resources
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.Properties.Resources.resources
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.csproj.GenerateResource.Cache
