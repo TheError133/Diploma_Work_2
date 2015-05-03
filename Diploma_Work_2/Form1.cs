@@ -20,7 +20,6 @@ namespace Diploma_Work_2
         public List<int[]> Precedents = new List<int[]>();
         public MainForm()
         {
-            //
             InitializeComponent();
         }
         private void MainForm_Load(object sender, EventArgs e)
