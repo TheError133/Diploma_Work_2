@@ -29,3 +29,6 @@ D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.AddPointForm.resou
 D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.Properties.Resources.resources
 D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.csproj.GenerateResource.Cache
 D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.AddPathForm.resources
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\bin\Debug\Diploma_Work_2.exe.config
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.exe
+C:\GitRepository\Диплом Магистра Прога\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.pdb
