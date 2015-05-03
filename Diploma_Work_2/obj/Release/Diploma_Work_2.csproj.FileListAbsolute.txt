@@ -1,0 +1,11 @@
+D:\GIT\Diploma_Work_2\Diploma_Work_2\bin\Release\Diploma_Work_2.exe.config
+D:\GIT\Diploma_Work_2\Diploma_Work_2\bin\Release\Diploma_Work_2.exe
+D:\GIT\Diploma_Work_2\Diploma_Work_2\bin\Release\Diploma_Work_2.pdb
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.csprojResolveAssemblyReference.cache
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.MainForm.resources
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.AddPointForm.resources
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.AddPathForm.resources
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.Properties.Resources.resources
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.csproj.GenerateResource.Cache
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.exe
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Release\Diploma_Work_2.pdb

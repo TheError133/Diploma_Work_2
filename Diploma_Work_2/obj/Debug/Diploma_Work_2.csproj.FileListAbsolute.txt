@@ -1,0 +1,31 @@
+c:\Users\theerror133\Diploma_Work_2\Diploma_Work_2\bin\Debug\Diploma_Work_2.exe.config
+c:\Users\theerror133\Diploma_Work_2\Diploma_Work_2\bin\Debug\Diploma_Work_2.exe
+c:\Users\theerror133\Diploma_Work_2\Diploma_Work_2\bin\Debug\Diploma_Work_2.pdb
+c:\Users\theerror133\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.csprojResolveAssemblyReference.cache
+c:\Users\theerror133\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.MainForm.resources
+c:\Users\theerror133\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.Properties.Resources.resources
+c:\Users\theerror133\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.csproj.GenerateResource.Cache
+c:\Users\theerror133\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.exe
+c:\Users\theerror133\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.pdb
+c:\Users\theerror133\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.AddPointForm.resources
+C:\Users\TheError133\Documents\Visual Studio 2013\Projects\Diploma_Work_2\Diploma_Work_2\bin\Debug\Diploma_Work_2.exe.config
+C:\Users\TheError133\Documents\Visual Studio 2013\Projects\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.exe
+C:\Users\TheError133\Documents\Visual Studio 2013\Projects\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.pdb
+C:\Users\TheError133\Documents\Visual Studio 2013\Projects\Diploma_Work_2\Diploma_Work_2\bin\Debug\Diploma_Work_2.exe
+C:\Users\TheError133\Documents\Visual Studio 2013\Projects\Diploma_Work_2\Diploma_Work_2\bin\Debug\Diploma_Work_2.pdb
+C:\Users\TheError133\Documents\Visual Studio 2013\Projects\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.csprojResolveAssemblyReference.cache
+C:\Users\TheError133\Documents\Visual Studio 2013\Projects\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.MainForm.resources
+C:\Users\TheError133\Documents\Visual Studio 2013\Projects\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.AddPointForm.resources
+C:\Users\TheError133\Documents\Visual Studio 2013\Projects\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.Properties.Resources.resources
+C:\Users\TheError133\Documents\Visual Studio 2013\Projects\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.csproj.GenerateResource.Cache
+D:\GIT\Diploma_Work_2\Diploma_Work_2\bin\Debug\Diploma_Work_2.exe.config
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.exe
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.pdb
+D:\GIT\Diploma_Work_2\Diploma_Work_2\bin\Debug\Diploma_Work_2.exe
+D:\GIT\Diploma_Work_2\Diploma_Work_2\bin\Debug\Diploma_Work_2.pdb
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.csprojResolveAssemblyReference.cache
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.MainForm.resources
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.AddPointForm.resources
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.Properties.Resources.resources
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.csproj.GenerateResource.Cache
+D:\GIT\Diploma_Work_2\Diploma_Work_2\obj\Debug\Diploma_Work_2.AddPathForm.resources
