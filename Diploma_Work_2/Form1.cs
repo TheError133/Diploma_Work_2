@@ -24,8 +24,7 @@ namespace Diploma_Work_2
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //
-			//
+
         }
         public _Path[,] addIntoPaths(_Path[,] OldPaths)
         {
