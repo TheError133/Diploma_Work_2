@@ -16,8 +16,9 @@ namespace Diploma_Work_2
     {
         public _Path[,] Paths = new _Path[0,0];
         public _Node[] Nodes = new _Node[0];
-        private int[] IndexesForPath = new int[]{-1, -1};
         public List<int[]> Precedents = new List<int[]>();
+        private int[] IndexesForPath = new int[] { -1, -1 };
+        private string FileName = "DataInfo.txt";
         public MainForm()
         {
             InitializeComponent();
@@ -150,7 +151,7 @@ namespace Diploma_Work_2
         }        
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StreamWriter SW = new StreamWriter("DataInfo.txt");
+            StreamWriter SW = new StreamWriter(FileName);
             string StringToWrite = "";
             for (int i = 0; i < Paths.GetLength(0); i++)
             {
@@ -382,6 +383,7 @@ namespace Diploma_Work_2
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 StreamReader SR = new StreamReader(openFileDialog1.FileName, Encoding.Default);
+                FileName = openFileDialog1.FileName;
                 string TextFromFile = SR.ReadToEnd();
                 string[] SplitResults = Regex.Split(TextFromFile, "\r\n-----\r\n");
                 string[] Results = Regex.Split(SplitResults[0], "\r\n");
