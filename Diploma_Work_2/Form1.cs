@@ -14,9 +14,9 @@ namespace Diploma_Work_2
 {
     public partial class MainForm : Form
     {
-        public _Path[,] Paths = new _Path[0,0];
+        public _Path[,] Paths = new _Path[0, 0];
         public _Node[] Nodes = new _Node[0];
-        public List<int[]> Precedents = new List<int[]>();
+        public bool[,] BestPaths = new bool[0, 0];
         private int[] IndexesForPath = new int[] { -1, -1 };
         private string FileName = "DataInfo.txt";
         public MainForm()
@@ -37,7 +37,7 @@ namespace Diploma_Work_2
                     ExpandedPaths[i, ExpandedPaths.GetLength(0) - 1] = new _Path(0, 0, 0);
                     ExpandedPaths[ExpandedPaths.GetLength(0) - 1, i] = new _Path(0, 0, 0);
                 }
-                else 
+                else
                     ExpandedPaths[i, i] = new _Path(0, 0, 0);
                 for (int j = 0; j < OldPaths.GetLength(0); j++)
                     ExpandedPaths[i, j] = OldPaths[i, j];
@@ -46,21 +46,24 @@ namespace Diploma_Work_2
                 ExpandedPaths[i, i] = new _Path(0, 0, 0);
             return ExpandedPaths;
         }
-        void test()
+        public bool[,] addIntoBest(bool[,] OldBest)
         {
-            Paths = new _Path[3, 3];
-            Nodes = new _Node[] { new _Node("1", 30, 30), new _Node("2", 50, 50), new _Node("3", 70, 70) };
-            int q = 0;
-            for (int i = 0; i < Paths.GetLength(0); i++)
-                for (int j = 0; j < Paths.GetLength(0); j++)
-                    Paths[i, j] = new _Path(q++, 0, 0);
-            _Path[,] a = deleteFromPaths(Paths, 0);
-            redraw();
-            MessageBox.Show(Paths[0, 0].Length + " " + Paths[0, 1].Length + " " + Paths[0, 2].Length + Environment.NewLine +
-                            Paths[1, 0].Length + " " + Paths[1, 1].Length + " " + Paths[1, 2].Length + Environment.NewLine +
-                            Paths[2, 0].Length + " " + Paths[2, 1].Length + " " + Paths[2, 2].Length + Environment.NewLine +
-                            a[0, 0].Length + " " + a[0, 1].Length + Environment.NewLine +
-                            a[1, 0].Length + " " + a[1, 1].Length + Environment.NewLine);
+            bool[,] ExpandedBest = new bool[OldBest.GetLength(0) + 1, OldBest.GetLength(0) + 1];
+            for (int i = 0; i < OldBest.GetLength(0); i++)
+            {
+                if (i != ExpandedBest.GetLength(0) - 1)
+                {
+                    ExpandedBest[i, ExpandedBest.GetLength(0) - 1] = false;
+                    ExpandedBest[ExpandedBest.GetLength(0) - 1, i] = false;
+                }
+                else
+                    ExpandedBest[i, i] = false;
+                for (int j = 0; j < OldBest.GetLength(0); j++)
+                    ExpandedBest[i, j] = false;
+            }
+            for (int i = 0; i < ExpandedBest.GetLength(0); i++)
+                ExpandedBest[i, i] = false;
+            return ExpandedBest;
         }
         public _Node[] addIntoNodes(_Node[] OldNodes, int X, int Y, string Name)
         {
@@ -96,6 +99,34 @@ namespace Diploma_Work_2
             else
             {
                 return new _Path[0, 0];
+            }
+        }
+        public bool[,] deleteFromBest(bool[,] OldBest, int Number)
+        {
+            if (OldBest.GetLength(0) > 1)
+            {
+                bool[,] ShrinkedPaths = new bool[OldBest.GetLength(0) - 1, OldBest.GetLength(0) - 1];
+                //1 четверть
+                for (int i = 0; i < Number; i++)
+                    for (int j = 0; j < Number; j++)
+                        ShrinkedPaths[i, j] = OldBest[i, j];
+                //2 четверть
+                for (int i = 0; i < Number; i++)
+                    for (int j = Number + 1; j < OldBest.GetLength(0); j++)
+                        ShrinkedPaths[i, j - 1] = OldBest[i, j];
+                //3 четверть
+                for (int i = Number + 1; i < OldBest.GetLength(0); i++)
+                    for (int j = 0; j < Number; j++)
+                        ShrinkedPaths[i - 1, j] = OldBest[i, j];
+                //4 четверть
+                for (int i = Number + 1; i < OldBest.GetLength(0); i++)
+                    for (int j = Number + 1; j < OldBest.GetLength(0); j++)
+                        ShrinkedPaths[i - 1, j - 1] = OldBest[i, j];
+                return ShrinkedPaths;
+            }
+            else
+            {
+                return new bool[0, 0];
             }
         }
         public int getNode(int X, int Y)
@@ -148,62 +179,55 @@ namespace Diploma_Work_2
             {
                 return new _Node[0];
             }
-        }        
+        }
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StreamWriter SW = new StreamWriter(FileName);
-            string StringToWrite = "";
-            for (int i = 0; i < Paths.GetLength(0); i++)
+            if (Nodes.Length > 0)
             {
-                for (int j = 0; j < Paths.GetLength(0); j++)
+                StreamWriter SW = new StreamWriter(FileName);
+                string StringToWrite = "";
+                for (int i = 0; i < Paths.GetLength(0); i++)
                 {
-                    StringToWrite += Paths[i, j].Length;
-                    if (j < Paths.GetLength(0) - 1)
-                        StringToWrite += "   ";
-                }
-                StringToWrite += "\r\n";
-            }
-            StringToWrite += "-----\r\n";
-            for (int i = 0; i < Paths.GetLength(0); i++)
-            {
-                for (int j = 0; j < Paths.GetLength(0); j++)
-                {
-                    StringToWrite += Paths[i, j].PathClass;
-                    if (j < Paths.GetLength(0) - 1)
-                        StringToWrite += "   ";
-                }
-                StringToWrite += "\r\n";
-            }
-            StringToWrite += "-----\r\n";
-            for (int i = 0; i < Paths.GetLength(0); i++)
-            {
-                for (int j = 0; j < Paths.GetLength(0); j++)
-                {
-                    StringToWrite += Paths[i, j].Curve;
-                    if (j < Paths.GetLength(0) - 1)
-                        StringToWrite += "   ";
-                }
-                StringToWrite += "\r\n";
-            }
-            StringToWrite += "-----\r\n";
-            for (int i = 0; i < Paths.GetLength(0); i++)
-                StringToWrite += Nodes[i].Name + "  " + Nodes[i].X + "  " + Nodes[i].Y + "\r\n";
-            StringToWrite += "-----";
-            if (Precedents.Count > 0)
-                foreach (int[] Pr in Precedents)
-                {
-                    StringToWrite += "\r\n";
-                    for (int i = 0; i < Pr.Length; i++)
+                    for (int j = 0; j < Paths.GetLength(0); j++)
                     {
-                        StringToWrite += Pr[i];
-                        if (i < Pr.Length - 1)
-                            StringToWrite += "  ";
+                        StringToWrite += Paths[i, j].Length;
+                        if (j < Paths.GetLength(0) - 1)
+                            StringToWrite += "   ";
                     }
+                    StringToWrite += "\r\n";
                 }
-            else
-                StringToWrite += "\r\n";
-            SW.Write(StringToWrite);
-            SW.Close();
+                StringToWrite += "-----\r\n";
+                for (int i = 0; i < Paths.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Paths.GetLength(0); j++)
+                    {
+                        StringToWrite += Paths[i, j].PathClass;
+                        if (j < Paths.GetLength(0) - 1)
+                            StringToWrite += "   ";
+                    }
+                    StringToWrite += "\r\n";
+                }
+                StringToWrite += "-----\r\n";
+                for (int i = 0; i < Paths.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Paths.GetLength(0); j++)
+                    {
+                        StringToWrite += Paths[i, j].Quality;
+                        if (j < Paths.GetLength(0) - 1)
+                            StringToWrite += "   ";
+                    }
+                    StringToWrite += "\r\n";
+                }
+                StringToWrite += "-----\r\n";
+                for (int i = 0; i < Paths.GetLength(0); i++)
+                {
+                    StringToWrite += Nodes[i].Name + "  " + Nodes[i].X + "  " + Nodes[i].Y;
+                    if (i < Paths.GetLength(0) - 1)
+                        StringToWrite += "\r\n";
+                }
+                SW.Write(StringToWrite);
+                SW.Close();
+            }
             Close();
         }
         private void RadioDeletePoint_CheckedChanged(object sender, EventArgs e)
@@ -257,10 +281,7 @@ namespace Diploma_Work_2
                         {
                             Nodes = deleteFromNodes(Nodes, Index);
                             Paths = deleteFromPaths(Paths, Index);
-                            //Удаление прецедентов, содержащих вершину
-                            for (int i = Precedents.Count - 1; i >= 0; i--)
-                                if (Precedents.ElementAt(i).Contains(Index))
-                                    Precedents.RemoveAt(i);
+                            BestPaths = deleteFromBest(BestPaths, Index);
                             redraw();
                         }
                     }
@@ -328,12 +349,6 @@ namespace Diploma_Work_2
                                         //В матрице смежности обнуляем всю информацию по индексам пути - удаляем путь
                                         Paths[IndexesForPath[0], IndexesForPath[1]] = new _Path(0, 0, 0);
                                         Paths[IndexesForPath[1], IndexesForPath[0]] = new _Path(0, 0, 0);
-                                        //Удаляем прецеденты, содержащие указанные вершины
-                                        for (int i = Precedents.Count - 1; i >= 0; i-- )
-                                        {
-                                            if (Precedents.ElementAt(i).Contains(IndexesForPath[0]) && Precedents.ElementAt(i).Contains(IndexesForPath[1]))
-                                                Precedents.RemoveAt(i);
-                                        }
                                         redraw();
                                     }
                                 }
@@ -364,7 +379,7 @@ namespace Diploma_Work_2
                                 MessageBox.Show("Информация о пути между вершинами " + Nodes[IndexesForPath[0]].Name + " и " + Nodes[IndexesForPath[1]].Name + Environment.NewLine +
                                                 "Расстояние: " + Paths[IndexesForPath[0], IndexesForPath[1]].Length + Environment.NewLine +
                                                 "Класс пути: " + Paths[IndexesForPath[0], IndexesForPath[1]].PathClass + Environment.NewLine +
-                                                "Изогнутость: " + Paths[IndexesForPath[0], IndexesForPath[1]].Curve);
+                                                "Изогнутость: " + Paths[IndexesForPath[0], IndexesForPath[1]].Quality);
                                 IndexesForPath = new int[] { -1, -1 };
                             }
                         }
@@ -372,80 +387,230 @@ namespace Diploma_Work_2
                 }
             }
         }
-
-        private void отрисоватьЗановоToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            redraw();
-        }
-
         private void загрузитьИнформациюИзФайлаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            try
             {
-                StreamReader SR = new StreamReader(openFileDialog1.FileName, Encoding.Default);
-                FileName = openFileDialog1.FileName;
-                string TextFromFile = SR.ReadToEnd();
-                string[] SplitResults = Regex.Split(TextFromFile, "\r\n-----\r\n");
-                string[] Results = Regex.Split(SplitResults[0], "\r\n");
-                string[][] ResultsLower = new string[Results.Length][];
-                for (int i = 0; i < Results.GetLength(0); i++)
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    ResultsLower[i] = Regex.Split(Results[i], "  ");
-                }
-                Paths = new _Path[Results.Length, Results.Length];
-                for (int i = 0; i < Results.Length; i++)
-                    for (int j = 0; j < Results.Length; j++)
+                    StreamReader SR = new StreamReader(openFileDialog1.FileName, Encoding.Default);
+                    FileName = openFileDialog1.FileName;
+                    string TextFromFile = SR.ReadToEnd();
+                    string[] SplitResults = Regex.Split(TextFromFile, "\r\n-----\r\n");
+                    string[] Results = Regex.Split(SplitResults[0], "\r\n");
+                    string[][] ResultsLower = new string[Results.Length][];
+                    for (int i = 0; i < Results.GetLength(0); i++)
                     {
-                        Paths[i, j] = new _Path(0, 0, 0);
-                        Paths[i, j].Length = Convert.ToInt32(ResultsLower[i][j]);
+                        ResultsLower[i] = Regex.Split(Results[i], "  ");
                     }
-                Results = Regex.Split(SplitResults[1], "\r\n");
-                ResultsLower = new string[Results.Length][];
-                for (int i = 0; i < Results.GetLength(0); i++)
-                {
-                    ResultsLower[i] = Regex.Split(Results[i], "  ");
-                }
-                for (int i = 0; i < Results.Length; i++)
-                    for (int j = 0; j < Results.Length; j++)
-                        Paths[i, j].PathClass = Convert.ToDouble(ResultsLower[i][j]);
-                Results = Regex.Split(SplitResults[2], "\r\n");
-                ResultsLower = new string[Results.Length][];
-                for (int i = 0; i < Results.GetLength(0); i++)
-                {
-                    ResultsLower[i] = Regex.Split(Results[i], "  ");
-                }
-                for (int i = 0; i < Results.Length; i++)
-                    for (int j = 0; j < Results.Length; j++)
-                        Paths[i, j].Curve = Convert.ToDouble(ResultsLower[i][j]);
-                Results = Regex.Split(SplitResults[3], "\r\n");
-                ResultsLower = new string[Results.Length][];
-                for (int i = 0; i < Results.GetLength(0); i++)
-                {
-                    ResultsLower[i] = Regex.Split(Results[i], "  ");
-                }
-                Nodes = new _Node[Results.Length];
-                for (int i = 0; i < Results.Length; i++)
-                    Nodes[i] = new _Node(ResultsLower[i][0], Convert.ToInt32(ResultsLower[i][1]), Convert.ToInt32(ResultsLower[i][2]));
-                if (SplitResults[4].Length > 0)
-                {
-                    Results = Regex.Split(SplitResults[4], "\r\n");
+                    Paths = new _Path[Results.Length, Results.Length];
+                    for (int i = 0; i < Results.Length; i++)
+                        for (int j = 0; j < Results.Length; j++)
+                        {
+                            Paths[i, j] = new _Path(0, 0, 0);
+                            Paths[i, j].Length = Convert.ToInt32(ResultsLower[i][j]);
+                        }
+                    Results = Regex.Split(SplitResults[1], "\r\n");
                     ResultsLower = new string[Results.Length][];
                     for (int i = 0; i < Results.GetLength(0); i++)
                     {
                         ResultsLower[i] = Regex.Split(Results[i], "  ");
                     }
-                    int[][] Precs = new int[Results.Length][];
+                    for (int i = 0; i < Results.Length; i++)
+                        for (int j = 0; j < Results.Length; j++)
+                            Paths[i, j].PathClass = Convert.ToDouble(ResultsLower[i][j]);
+                    Results = Regex.Split(SplitResults[2], "\r\n");
+                    ResultsLower = new string[Results.Length][];
                     for (int i = 0; i < Results.GetLength(0); i++)
                     {
-                        Precs[i] = new int[ResultsLower[i].Length];
-                        for (int j = 0; j < Precs[i].Length; j++)
-                            Precs[i][j] = Convert.ToInt32(ResultsLower[i][j]);
+                        ResultsLower[i] = Regex.Split(Results[i], "  ");
                     }
-                    Precedents = Precs.ToList<int[]>();
+                    for (int i = 0; i < Results.Length; i++)
+                        for (int j = 0; j < Results.Length; j++)
+                            Paths[i, j].Quality = Convert.ToDouble(ResultsLower[i][j]);
+                    Results = Regex.Split(SplitResults[3], "\r\n");
+                    ResultsLower = new string[Results.Length][];
+                    for (int i = 0; i < Results.GetLength(0); i++)
+                    {
+                        ResultsLower[i] = Regex.Split(Results[i], "  ");
+                    }
+                    Nodes = new _Node[Results.Length];
+                    for (int i = 0; i < Results.Length; i++)
+                        Nodes[i] = new _Node(ResultsLower[i][0], Convert.ToInt32(ResultsLower[i][1]), Convert.ToInt32(ResultsLower[i][2]));
+                    BestPaths = new bool[Nodes.Length, Nodes.Length];
+                    SR.Close();
+                    redraw();
                 }
-                SR.Close();
-                redraw();
             }
+            catch (Exception Ex)
+            {
+                MessageBox.Show("Файл с информацией имеет неверный формат.");
+            }
+        }
+        private void Classification_alg(int Start, ref bool[,] Best)
+        {
+            int[] PathNodes = new int[0];
+            int[] NodeClass = new int[Nodes.Length];
+            double[][] Weight = new double[Nodes.Length][];
+            for (int i = 0; i < Nodes.Length; i++)
+                Weight[i] = new double[Nodes.Length];
+            //Веса путей на основании совокупности длины пути, его класса и качества
+            for (int i = 0; i < Nodes.Length; i++)
+                for (int j = 0; j < Nodes.Length; j++)
+                    Weight[i][j] = Paths[i, j].Length * //Длина пути
+                        (3 + (6 - Paths[i, j].PathClass)) * //Коэффициент класса, как Kcl = (3 + (6 - Cl)) - чем выше класс, тем меньше вес пути
+                        (2 - Paths[i, j].Quality); //Коэффициент качества, как Kq = (2 - Q) - чем выше качество, тем меньше вес пути
+            for (int i = 0; i < NodeClass.Length; i++)
+            {
+                if (Weight[i].Where(p => p != 0).Count() == 0)//Добавил этот класс как изолированные вершины, иначе алгоритм работает неверно
+                    NodeClass[i] = 0;
+                if (Weight[i].Where(p => p != 0).Count() > 2)
+                    NodeClass[i] = 4;
+                if (Weight[i].Where(p => p != 0).Count() == 1)//Немного подправил, поскольку неравество убирает изолированные вершины
+                    NodeClass[i] = 1;
+                if (Weight[i].Where(p => p != 0).Count() == 2)
+                {
+                    int[] indexes = new int[2];
+                    int q = 0;
+                    for (int j = 0; j < NodeClass.Length; j++)
+                        if (Weight[i][j] != 0)
+                            indexes[q++] = j;
+                    if (Weight[indexes[0]][indexes[1]] == 0)
+                        NodeClass[i] = 3;
+                    else
+                        if (Weight[indexes[0]][indexes[1]] < Weight[i][indexes[0]] + Weight[i][indexes[1]])
+                            NodeClass[i] = 2;
+                        else
+                            NodeClass[i] = 3;
+                }
+            }
+            string[] paths = new string[Weight.GetLength(0)];
+            double[] lengths = new double[Weight.GetLength(0)];
+            bool[] used = new bool[Weight.GetLength(0)];
+            for (int i = 0; i < Weight.GetLength(0); i++)
+            {
+                if (NodeClass[i] != 0)
+                {
+                    used[i] = false;
+                    lengths[i] = 0;
+                    if (i != Start)
+                        paths[i] += Start;
+                }
+                else
+                    used[i] = true;
+            }
+            bool check = false;
+            int index = Start;
+            while (!check)
+            {
+                used[index] = true;
+                check = true;
+                for (int i = 0; i < used.Length; i++)
+                {
+                    if (!used[i])
+                        if (Weight[index][i] != 0)
+                        {
+                            if (lengths[i] == 0)
+                                if (index == Start)
+                                {
+                                    lengths[i] += Weight[index][i];
+                                    paths[i] += " -> " + i;
+                                }
+                                else
+                                {
+                                    lengths[i] = lengths[index] + Weight[index][i];
+                                    paths[i] = paths[index] + " -> " + i;
+                                }
+                            else
+                                if (lengths[i] > lengths[index] + Weight[index][i])
+                                {
+                                    lengths[i] = lengths[index] + Weight[index][i];
+                                    paths[i] = paths[index] + " -> " + i;
+                                }
+                        }
+                    check &= used[i];
+                }
+                double lowest = 0;
+                for (int i = 0; i < used.Length; i++)
+                    if (!used[i])
+                        if (lowest == 0)
+                        {
+                            lowest = lengths[i];
+                            index = i;
+                        }
+                        else
+                            if (lowest > lengths[i] && lengths[i] != 0)
+                            {
+                                lowest = lengths[i];
+                                index = i;
+                            }
+                if (used[index] && !check)
+                {
+                    MessageBox.Show("Пути между вершинами не существует");
+                    return;
+                }
+            }
+            for (int i = 0; i < paths.Length; i++)
+                if (i != Start)
+                {
+                    string[] TmpStr = Regex.Split(paths[i], " -> ");
+                    int[] TmpNodes = new int[TmpStr.Length];
+                    for (int j = 0; j < TmpNodes.Length; j++)
+                        TmpNodes[j] = Convert.ToInt32(TmpStr[j]);
+                    for (int j = 0; j < TmpNodes.Length - 1; j++)
+                        BestPaths[TmpNodes[j], TmpNodes[j + 1]] = true;
+                }
+        }
+        private void ВыделитьГрафToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Nodes.Length > 0)
+            {
+                for (int i = 0; i < Nodes.Length; i++)
+                {
+                    if (Nodes[i].Name != "")
+                    {
+                        int counter = 0;
+                        for (int j = 0; j < Nodes.Length; j++)
+                            if (Paths[i, j].Length > 0)
+                                counter++;
+                        if (counter == 0)
+                        {
+                            MessageBox.Show("Присутствуют изолированные вершины.\r\nВыделить идеальный граф невозможно.");
+                            return;
+                        }
+                    }
+                }
+                for (int i = 0; i < Nodes.Length; i++)
+                    for (int j = 0; j < Nodes.Length; j++)
+                        BestPaths[i, j] = false;
+                try
+                {
+                    for (int i = 0; i < Nodes.Length; i++)
+                        if (Nodes[i].Name != "")
+                            Classification_alg(i, ref BestPaths);
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message);
+                }
+                Graphics Gr = Graph.CreateGraphics();
+                for (int i = 0; i < BestPaths.GetLength(0); i++)
+                    for (int j = 0; j < BestPaths.GetLength(0); j++)
+                        if (BestPaths[i, j])
+                            Gr.DrawLine(new Pen(Color.Red, 3), Nodes[i].X, Nodes[i].Y, Nodes[j].X, Nodes[j].Y);
+                for (int i = 0; i < Nodes.Length; i++)
+                    if (Nodes[i].Name != "")
+                    {
+                        Gr.FillEllipse(Brushes.Black, Nodes[i].X - 5, Nodes[i].Y - 5, 10, 10);
+                        Gr.DrawString(Nodes[i].Name, new Font("Consolas", 12), Brushes.Blue, new Point(Nodes[i].X - 10, Nodes[i].Y - 23));
+                    }
+            }
+            else
+                MessageBox.Show("Графа нет!");
+        }
+        private void отрисоватьГрафЗановоToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            redraw();
         }
     }
     public class _Node
@@ -462,12 +627,12 @@ namespace Diploma_Work_2
     public class _Path
     {
         public int Length;
-        public double PathClass, Curve;
-        public _Path(int Length, double PathClass, double Curve)
+        public double PathClass, Quality;
+        public _Path(int Length, double PathClass, double Quality)
         {
             this.Length = Length;
             this.PathClass = PathClass;
-            this.Curve = Curve;
+            this.Quality = Quality;
         }
     }
 }

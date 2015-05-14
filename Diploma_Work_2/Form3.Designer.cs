@@ -83,9 +83,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(63, 69);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 13);
+            this.label3.Size = new System.Drawing.Size(81, 13);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Изогнутость(0.01 - 1)";
+            this.label3.Text = "Качество(0 - 1)";
             // 
             // TextCurve
             // 

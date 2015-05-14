@@ -37,6 +37,7 @@ namespace Diploma_Work_2
             {
                 MForm.Nodes = MForm.addIntoNodes(MForm.Nodes, X, Y, NodeName.Text);
                 MForm.Paths = MForm.addIntoPaths(MForm.Paths);
+                MForm.BestPaths = MForm.addIntoBest(MForm.BestPaths);
                 Close();
             }
             else
