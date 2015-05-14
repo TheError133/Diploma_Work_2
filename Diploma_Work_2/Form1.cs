@@ -561,6 +561,11 @@ namespace Diploma_Work_2
                     for (int i = 0; i < Nodes.Length; i++)
                         if (Nodes[i].Name != "")
                             Classification_alg(i, ref BestPaths);
+                    //Дополнительная проверка, чтобы не отрисовывались пути, которых изначально нет.
+                    for (int i = 0; i < Nodes.Length; i++)
+                        for (int j = 0; j < Nodes.Length; j++)
+                            if (Paths[i, j].Length == 0)
+                                BestPaths[i, j] = false;
                 }
                 catch (Exception Ex)
                 {
