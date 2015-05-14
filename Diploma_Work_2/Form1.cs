@@ -335,8 +335,7 @@ namespace Diploma_Work_2
                     }
                     else
                     {
-                        int Index = -1;
-                        Index = getNode(e.X, e.Y);
+                        int Index = getNode(e.X, e.Y);
                         if (Index >= 0)
                             if (Index != IndexesForPath[0])
                             {
@@ -349,41 +348,14 @@ namespace Diploma_Work_2
                                         //В матрице смежности обнуляем всю информацию по индексам пути - удаляем путь
                                         Paths[IndexesForPath[0], IndexesForPath[1]] = new _Path(0, 0, 0);
                                         Paths[IndexesForPath[1], IndexesForPath[0]] = new _Path(0, 0, 0);
+                                        IndexesForPath = new int[] { -1, -1 };
                                         redraw();
                                     }
+                                    else
+                                        IndexesForPath = new int[] { -1, -1 };
                                 }
                             }
                     }
-                }
-            }
-            if (RadioPathInfo.Checked)
-            //Информация о пути
-            {
-                if (IndexesForPath[0] == -1)
-                {
-                    int Index = -1;
-                    Index = getNode(e.X, e.Y);
-                    if (Index >= 0)
-                        IndexesForPath[0] = Index;
-                }
-                else
-                {
-                    int Index = -1;
-                    Index = getNode(e.X, e.Y);
-                    if (Index >= 0)
-                        if (Index != IndexesForPath[0])
-                        {
-                            IndexesForPath[1] = Index;
-                            if (Paths[IndexesForPath[0], IndexesForPath[1]].Length > 0)
-                            {
-                                MessageBox.Show("Информация о пути между вершинами " + Nodes[IndexesForPath[0]].Name + " и " + Nodes[IndexesForPath[1]].Name + Environment.NewLine +
-                                                "Расстояние: " + Paths[IndexesForPath[0], IndexesForPath[1]].Length + Environment.NewLine +
-                                                "Класс пути: " + Paths[IndexesForPath[0], IndexesForPath[1]].PathClass + Environment.NewLine +
-                                                "Изогнутость: " + Paths[IndexesForPath[0], IndexesForPath[1]].Quality);
-                                IndexesForPath = new int[] { -1, -1 };
-                            }
-                        }
-                    IndexesForPath = new int[] { -1, -1 };
                 }
             }
         }
@@ -418,7 +390,7 @@ namespace Diploma_Work_2
                     }
                     for (int i = 0; i < Results.Length; i++)
                         for (int j = 0; j < Results.Length; j++)
-                            Paths[i, j].PathClass = Convert.ToDouble(ResultsLower[i][j]);
+                            Paths[i, j].PathClass = Convert.ToInt32(ResultsLower[i][j]);
                     Results = Regex.Split(SplitResults[2], "\r\n");
                     ResultsLower = new string[Results.Length][];
                     for (int i = 0; i < Results.GetLength(0); i++)
@@ -563,6 +535,7 @@ namespace Diploma_Work_2
         }
         private void ВыделитьГрафToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            redraw();
             if (Nodes.Length > 0)
             {
                 for (int i = 0; i < Nodes.Length; i++)
@@ -612,6 +585,60 @@ namespace Diploma_Work_2
         {
             redraw();
         }
+        private void showcase()
+        {
+            Graphics Gr = Graph.CreateGraphics();
+            redraw();
+            for (int i = 0; i < Paths.GetLength(0); i++)
+                for (int j = i + 1; j < Paths.GetLength(1); j++)
+                    if (Paths[i,j].Length > 0)
+                    {
+                        Color Col = Color.Black;
+                        switch (Paths[i,j].PathClass)
+                        {
+                            case 1:
+                                Col = Color.FromArgb(255, 0, 0);
+                                break;
+                            case 2:
+                                Col = Color.FromArgb(191, 64, 0);
+                                break;
+                            case 3:
+                                Col = Color.FromArgb(127, 128, 0);
+                                break;
+                            case 4:
+                                Col = Color.FromArgb(63, 192, 0);
+                                break;
+                            case 5:
+                                Col = Color.FromArgb(0, 255, 0);
+                                break;
+                        }
+                        Gr.DrawLine(new Pen(Col), Nodes[i].X, Nodes[i].Y, Nodes[j].X, Nodes[j].Y);
+                        int MaxX, MinX, MaxY, MinY, MidX, MidY, ShiftY;
+                        MaxX = Nodes[i].X > Nodes[j].X ? Nodes[i].X : Nodes[j].X;
+                        MinX = Nodes[i].X < Nodes[j].X ? Nodes[i].X : Nodes[j].X;
+                        MaxY = Nodes[i].Y > Nodes[j].Y ? Nodes[i].Y : Nodes[j].Y;
+                        MinY = Nodes[i].Y < Nodes[j].Y ? Nodes[i].Y : Nodes[j].Y;
+                        if (Nodes[i].X < Nodes[j].X && Nodes[i].Y < Nodes[j].Y || Nodes[i].X > Nodes[j].X && Nodes[i].Y > Nodes[j].Y)
+                            ShiftY = -13;
+                        else
+                            ShiftY = 2;
+                        MidX = MinX + (MaxX - MinX) / 2;
+                        MidY = MinY + (MaxY - MinY) / 2;
+                        Gr.DrawLine(new Pen(Col), MidX, MidY, MidX + 2, MidY + ShiftY + 6);
+                        Gr.DrawString(String.Format("{0}|{1}|{2}", Paths[i, j].Length, Paths[i, j].PathClass, Paths[i, j].Quality), new Font("Arial", 8), Brushes.Black, new Point(MidX + 2, MidY + ShiftY));
+                    }
+            for (int i = 0; i < Nodes.Length; i++)
+                if (Nodes[i].Name != "")
+                {
+                    Gr.FillEllipse(Brushes.Black, Nodes[i].X - 5, Nodes[i].Y - 5, 10, 10);
+                    Gr.DrawString(Nodes[i].Name, new Font("Consolas", 12), Brushes.Blue, new Point(Nodes[i].X - 10, Nodes[i].Y - 23));
+                }
+        }
+
+        private void информацияОПутяхToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showcase();
+        }
     }
     public class _Node
     {
@@ -626,9 +653,9 @@ namespace Diploma_Work_2
     }
     public class _Path
     {
-        public int Length;
-        public double PathClass, Quality;
-        public _Path(int Length, double PathClass, double Quality)
+        public int PathClass, Length;
+        public double Quality;
+        public _Path(int Length, int PathClass, double Quality)
         {
             this.Length = Length;
             this.PathClass = PathClass;

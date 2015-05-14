@@ -33,11 +33,11 @@
             this.загрузитьИнформациюИзФайлаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.графToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ВыделитьГрафToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отрисоватьГрафЗановоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ВыделитьГрафToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.информацияОПутяхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CheckChangesAllowed = new System.Windows.Forms.CheckBox();
-            this.RadioPathInfo = new System.Windows.Forms.RadioButton();
             this.RadioDeletePath = new System.Windows.Forms.RadioButton();
             this.RadioAddPath = new System.Windows.Forms.RadioButton();
             this.RadioDeletePoint = new System.Windows.Forms.RadioButton();
@@ -56,7 +56,7 @@
             this.графToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(671, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(595, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -87,17 +87,11 @@
             // 
             this.графToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.отрисоватьГрафЗановоToolStripMenuItem,
-            this.ВыделитьГрафToolStripMenuItem});
+            this.ВыделитьГрафToolStripMenuItem,
+            this.информацияОПутяхToolStripMenuItem});
             this.графToolStripMenuItem.Name = "графToolStripMenuItem";
             this.графToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.графToolStripMenuItem.Text = "Граф";
-            // 
-            // ВыделитьГрафToolStripMenuItem
-            // 
-            this.ВыделитьГрафToolStripMenuItem.Name = "ВыделитьГрафToolStripMenuItem";
-            this.ВыделитьГрафToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.ВыделитьГрафToolStripMenuItem.Text = "Выделить граф идеальных путей";
-            this.ВыделитьГрафToolStripMenuItem.Click += new System.EventHandler(this.ВыделитьГрафToolStripMenuItem_Click);
             // 
             // отрисоватьГрафЗановоToolStripMenuItem
             // 
@@ -106,17 +100,30 @@
             this.отрисоватьГрафЗановоToolStripMenuItem.Text = "Отрисовать граф заново";
             this.отрисоватьГрафЗановоToolStripMenuItem.Click += new System.EventHandler(this.отрисоватьГрафЗановоToolStripMenuItem_Click);
             // 
+            // ВыделитьГрафToolStripMenuItem
+            // 
+            this.ВыделитьГрафToolStripMenuItem.Name = "ВыделитьГрафToolStripMenuItem";
+            this.ВыделитьГрафToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.ВыделитьГрафToolStripMenuItem.Text = "Выделить граф идеальных путей";
+            this.ВыделитьГрафToolStripMenuItem.Click += new System.EventHandler(this.ВыделитьГрафToolStripMenuItem_Click);
+            // 
+            // информацияОПутяхToolStripMenuItem
+            // 
+            this.информацияОПутяхToolStripMenuItem.Name = "информацияОПутяхToolStripMenuItem";
+            this.информацияОПутяхToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.информацияОПутяхToolStripMenuItem.Text = "Информация о путях";
+            this.информацияОПутяхToolStripMenuItem.Click += new System.EventHandler(this.информацияОПутяхToolStripMenuItem_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.CheckChangesAllowed);
-            this.groupBox1.Controls.Add(this.RadioPathInfo);
             this.groupBox1.Controls.Add(this.RadioDeletePath);
             this.groupBox1.Controls.Add(this.RadioAddPath);
             this.groupBox1.Controls.Add(this.RadioDeletePoint);
             this.groupBox1.Controls.Add(this.RadioAddPoint);
             this.groupBox1.Location = new System.Drawing.Point(437, 30);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(222, 157);
+            this.groupBox1.Size = new System.Drawing.Size(150, 138);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Конструктор графов";
@@ -124,23 +131,12 @@
             // CheckChangesAllowed
             // 
             this.CheckChangesAllowed.AutoSize = true;
-            this.CheckChangesAllowed.Location = new System.Drawing.Point(5, 133);
+            this.CheckChangesAllowed.Location = new System.Drawing.Point(4, 110);
             this.CheckChangesAllowed.Name = "CheckChangesAllowed";
             this.CheckChangesAllowed.Size = new System.Drawing.Size(138, 17);
             this.CheckChangesAllowed.TabIndex = 1;
             this.CheckChangesAllowed.Text = "Изменения включены";
             this.CheckChangesAllowed.UseVisualStyleBackColor = true;
-            // 
-            // RadioPathInfo
-            // 
-            this.RadioPathInfo.AutoSize = true;
-            this.RadioPathInfo.Location = new System.Drawing.Point(6, 110);
-            this.RadioPathInfo.Name = "RadioPathInfo";
-            this.RadioPathInfo.Size = new System.Drawing.Size(125, 17);
-            this.RadioPathInfo.TabIndex = 0;
-            this.RadioPathInfo.Text = "Информация о пути";
-            this.RadioPathInfo.UseVisualStyleBackColor = true;
-            this.RadioPathInfo.CheckedChanged += new System.EventHandler(this.RadioDeletePath_CheckedChanged);
             // 
             // RadioDeletePath
             // 
@@ -205,7 +201,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 365);
+            this.ClientSize = new System.Drawing.Size(595, 365);
             this.ControlBox = false;
             this.Controls.Add(this.Graph);
             this.Controls.Add(this.groupBox1);
@@ -238,10 +234,10 @@
         private System.Windows.Forms.PictureBox Graph;
         private System.Windows.Forms.ToolStripMenuItem графToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ВыделитьГрафToolStripMenuItem;
-        private System.Windows.Forms.RadioButton RadioPathInfo;
         private System.Windows.Forms.ToolStripMenuItem загрузитьИнформациюИзФайлаToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem отрисоватьГрафЗановоToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem информацияОПутяхToolStripMenuItem;
     }
 }
 

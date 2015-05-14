@@ -34,12 +34,12 @@ namespace Diploma_Work_2
         private void AddPathButton_Click(object sender, EventArgs e)
         {
             int Length;
-            double Curve;
+            double Quality;
             _Path NewPath, PathByClass = new _Path(0, 0, 0), PathByPrec = new _Path(0, 0, 0);
             if (TextLength.Text.Length > 0 && int.TryParse(TextLength.Text, out Length) && Length > 0)
-                if (TextCurve.Text.Length > 0 && double.TryParse(TextCurve.Text, out Curve) && Curve >= 0 && Curve <= 1)
+                if (TextQuality.Text.Length > 0 && double.TryParse(TextQuality.Text, out Quality) && Quality >= 0 && Quality <= 1)
                 {
-                    NewPath = new _Path(Length, ComboClasses.SelectedIndex + 1, Curve);
+                    NewPath = new _Path(Length, ComboClasses.SelectedIndex + 1, Quality);
                     MForm.Paths[Index1, Index2] = NewPath;
                     MForm.Paths[Index2, Index1] = NewPath;
                     Close();

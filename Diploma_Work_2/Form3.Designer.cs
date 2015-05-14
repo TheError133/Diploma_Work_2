@@ -33,7 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.ComboClasses = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.TextCurve = new System.Windows.Forms.TextBox();
+            this.TextQuality = new System.Windows.Forms.TextBox();
             this.AddPathButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -87,12 +87,12 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Качество(0 - 1)";
             // 
-            // TextCurve
+            // TextQuality
             // 
-            this.TextCurve.Location = new System.Drawing.Point(182, 66);
-            this.TextCurve.Name = "TextCurve";
-            this.TextCurve.Size = new System.Drawing.Size(107, 20);
-            this.TextCurve.TabIndex = 3;
+            this.TextQuality.Location = new System.Drawing.Point(182, 66);
+            this.TextQuality.Name = "TextQuality";
+            this.TextQuality.Size = new System.Drawing.Size(107, 20);
+            this.TextQuality.TabIndex = 3;
             // 
             // AddPathButton
             // 
@@ -122,7 +122,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddPathButton);
-            this.Controls.Add(this.TextCurve);
+            this.Controls.Add(this.TextQuality);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.ComboClasses);
             this.Controls.Add(this.label2);
@@ -142,7 +142,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox ComboClasses;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox TextCurve;
+        private System.Windows.Forms.TextBox TextQuality;
         private System.Windows.Forms.Button AddPathButton;
         private System.Windows.Forms.Button CancelButton;
     }
