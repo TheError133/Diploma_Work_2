@@ -96,21 +96,21 @@
             // отрисоватьГрафЗановоToolStripMenuItem
             // 
             this.отрисоватьГрафЗановоToolStripMenuItem.Name = "отрисоватьГрафЗановоToolStripMenuItem";
-            this.отрисоватьГрафЗановоToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.отрисоватьГрафЗановоToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
             this.отрисоватьГрафЗановоToolStripMenuItem.Text = "Отрисовать граф заново";
             this.отрисоватьГрафЗановоToolStripMenuItem.Click += new System.EventHandler(this.отрисоватьГрафЗановоToolStripMenuItem_Click);
             // 
             // ВыделитьГрафToolStripMenuItem
             // 
             this.ВыделитьГрафToolStripMenuItem.Name = "ВыделитьГрафToolStripMenuItem";
-            this.ВыделитьГрафToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.ВыделитьГрафToolStripMenuItem.Text = "Выделить граф идеальных путей";
+            this.ВыделитьГрафToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+            this.ВыделитьГрафToolStripMenuItem.Text = "Выделить граф базы прецедентов.";
             this.ВыделитьГрафToolStripMenuItem.Click += new System.EventHandler(this.ВыделитьГрафToolStripMenuItem_Click);
             // 
             // информацияОПутяхToolStripMenuItem
             // 
             this.информацияОПутяхToolStripMenuItem.Name = "информацияОПутяхToolStripMenuItem";
-            this.информацияОПутяхToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.информацияОПутяхToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
             this.информацияОПутяхToolStripMenuItem.Text = "Информация о путях";
             this.информацияОПутяхToolStripMenuItem.Click += new System.EventHandler(this.информацияОПутяхToolStripMenuItem_Click);
             // 
