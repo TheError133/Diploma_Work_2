@@ -535,10 +535,10 @@ namespace Diploma_Work_2
         }
         private void ВыделитьГрафToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            redraw();
-            if (Nodes.Length > 0)
+            redraw();//Отрисовка графа повторно
+            if (Nodes.Length > 0)//Проверка наличия графа
             {
-                for (int i = 0; i < Nodes.Length; i++)
+                for (int i = 0; i < Nodes.Length; i++)//Проверка на отсутствие изолированных вершин
                 {
                     if (Nodes[i].Name != "")
                     {
