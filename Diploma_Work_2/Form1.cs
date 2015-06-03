@@ -19,6 +19,7 @@ namespace Diploma_Work_2
         public bool[,] BestPaths = new bool[0, 0];
         private int[] IndexesForPath = new int[] { -1, -1 };
         private string FileName = "DataInfo.txt";
+        private double[, ,] Precedents;
         public MainForm()
         {
             InitializeComponent();
@@ -414,7 +415,7 @@ namespace Diploma_Work_2
                     redraw();
                 }
             }
-            catch (Exception Ex)
+            catch (Exception)
             {
                 MessageBox.Show("Файл с информацией имеет неверный формат.");
             }
@@ -531,7 +532,38 @@ namespace Diploma_Work_2
                         TmpNodes[j] = Convert.ToInt32(TmpStr[j]);
                     for (int j = 0; j < TmpNodes.Length - 1; j++)
                         BestPaths[TmpNodes[j], TmpNodes[j + 1]] = true;
+                    if (TmpNodes.Length > 1)
+                    {
+                        Precedents[Start, i, 0] = sumLength(TmpNodes);
+                        Precedents[Start, i, 1] = avgClass(TmpNodes);
+                        if (Precedents[Start, i, 1] != Math.Round(Precedents[Start, i, 1], 3))
+                            Precedents[Start, i, 1] = Math.Round(Precedents[Start, i, 1], 3);
+                        Precedents[Start, i, 2] = avgQuality(TmpNodes);
+                        if (Precedents[Start, i, 2] != Math.Round(Precedents[Start, i, 2], 3))
+                            Precedents[Start, i, 2] = Math.Round(Precedents[Start, i, 2], 3);
+                    }
                 }
+        }
+        private double avgClass(int[] Nodes)
+        {
+            double Sum = 0;
+            for (int i = 0; i < Nodes.Length - 1; i++)
+                Sum += Paths[Nodes[i], Nodes[i + 1]].PathClass;
+            return Sum / (Nodes.Length - 1);
+        }
+        private double avgQuality(int[] Nodes)
+        {
+            double Sum = 0;
+            for (int i = 0; i < Nodes.Length - 1; i++)
+                Sum += Paths[Nodes[i], Nodes[i + 1]].Quality;
+            return Sum / (Nodes.Length - 1);
+        }
+        private double sumLength(int[] Nodes)
+        {
+            double Sum = 0;
+            for (int i = 0; i < Nodes.Length - 1; i++)
+                Sum += Paths[Nodes[i], Nodes[i + 1]].Length;
+            return Sum;
         }
         private void ВыделитьГрафToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -558,6 +590,14 @@ namespace Diploma_Work_2
                         BestPaths[i, j] = false;
                 try
                 {
+                    Precedents = new double[Nodes.Length, Nodes.Length, 3];
+                    for (int i = 0; i < Precedents.GetLength(0); i++)
+                        for (int j = 0; j < Precedents.GetLength(1); j++)
+                        {
+                            Precedents[i, j, 0] = 0;
+                            Precedents[i, j, 1] = 0;
+                            Precedents[i, j, 2] = 0;
+                        }
                     for (int i = 0; i < Nodes.Length; i++)
                         if (Nodes[i].Name != "")
                             Classification_alg(i, ref BestPaths);
@@ -643,6 +683,35 @@ namespace Diploma_Work_2
         private void информацияОПутяхToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showcase();
+        }
+
+        private void экспортИнформацииОПутяхToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.FileName = FileName + ".xml";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter SW = new StreamWriter(saveFileDialog1.FileName))
+                {
+                    int counter = 0;
+                    string StringToWrite = "<case>" + Environment.NewLine;
+                    for (int i = 0; i < Precedents.GetLength(0); i++)
+                        for (int j = 0; j < Precedents.GetLength(1); j++)
+                            if (Precedents[i, j, 0] > 0)
+                            {
+                                StringToWrite += "\t<precedent>" + Environment.NewLine;
+                                StringToWrite += "\t\t<num>" + ++counter + "</num>" + Environment.NewLine;
+                                StringToWrite += "\t\t<start>" + Nodes[i].Name + "</start>" + Environment.NewLine;
+                                StringToWrite += "\t\t<finish>" + Nodes[j].Name + "</finish>" + Environment.NewLine;
+                                StringToWrite += "\t\t<length>" + Precedents[i, j, 0] + "</length>" + Environment.NewLine;
+                                StringToWrite += "\t\t<class>" + Precedents[i, j, 1] + "</class>" + Environment.NewLine;
+                                StringToWrite += "\t\t<quality>" + Precedents[i, j, 2] + "</quality>" + Environment.NewLine;
+                                StringToWrite += "\t</precedent>" + Environment.NewLine;
+                            }
+                    StringToWrite += "</case>";
+                    SW.Write(StringToWrite);
+                    SW.Close();
+                }
+            }
         }
     }
     public class _Node
