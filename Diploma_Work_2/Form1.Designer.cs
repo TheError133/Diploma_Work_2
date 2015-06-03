@@ -44,6 +44,7 @@
             this.RadioAddPoint = new System.Windows.Forms.RadioButton();
             this.Graph = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.экспортИнформацииОПутяхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Graph)).BeginInit();
@@ -64,6 +65,7 @@
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.загрузитьИнформациюИзФайлаToolStripMenuItem,
+            this.экспортИнформацииОПутяхToolStripMenuItem,
             this.выходToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
@@ -96,21 +98,21 @@
             // отрисоватьГрафЗановоToolStripMenuItem
             // 
             this.отрисоватьГрафЗановоToolStripMenuItem.Name = "отрисоватьГрафЗановоToolStripMenuItem";
-            this.отрисоватьГрафЗановоToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+            this.отрисоватьГрафЗановоToolStripMenuItem.Size = new System.Drawing.Size(298, 22);
             this.отрисоватьГрафЗановоToolStripMenuItem.Text = "Отрисовать граф заново";
             this.отрисоватьГрафЗановоToolStripMenuItem.Click += new System.EventHandler(this.отрисоватьГрафЗановоToolStripMenuItem_Click);
             // 
             // ВыделитьГрафToolStripMenuItem
             // 
             this.ВыделитьГрафToolStripMenuItem.Name = "ВыделитьГрафToolStripMenuItem";
-            this.ВыделитьГрафToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-            this.ВыделитьГрафToolStripMenuItem.Text = "Выделить граф базы прецедентов.";
+            this.ВыделитьГрафToolStripMenuItem.Size = new System.Drawing.Size(298, 22);
+            this.ВыделитьГрафToolStripMenuItem.Text = "Выделить граф предпочтительных путей";
             this.ВыделитьГрафToolStripMenuItem.Click += new System.EventHandler(this.ВыделитьГрафToolStripMenuItem_Click);
             // 
             // информацияОПутяхToolStripMenuItem
             // 
             this.информацияОПутяхToolStripMenuItem.Name = "информацияОПутяхToolStripMenuItem";
-            this.информацияОПутяхToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+            this.информацияОПутяхToolStripMenuItem.Size = new System.Drawing.Size(298, 22);
             this.информацияОПутяхToolStripMenuItem.Text = "Информация о путях";
             this.информацияОПутяхToolStripMenuItem.Click += new System.EventHandler(this.информацияОПутяхToolStripMenuItem_Click);
             // 
@@ -197,6 +199,12 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // экспортИнформацииОПутяхToolStripMenuItem
+            // 
+            this.экспортИнформацииОПутяхToolStripMenuItem.Name = "экспортИнформацииОПутяхToolStripMenuItem";
+            this.экспортИнформацииОПутяхToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.экспортИнформацииОПутяхToolStripMenuItem.Text = "Экспорт информации о путях";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,6 +246,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem отрисоватьГрафЗановоToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem информацияОПутяхToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem экспортИнформацииОПутяхToolStripMenuItem;
     }
 }
 
